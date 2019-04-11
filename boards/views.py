@@ -124,7 +124,7 @@ class PostUpdateView(UpdateView):
         return redirect('topic_posts', pk=post.topic.board.pk, topic_pk=post.topic.pk)
 
 def inventaris(request):
-    inventariss = Inventaris.objects.all()
+    inventariss = Inventaris.objects.all().count()
     return render(request, 'inventaris.html', {'inventariss': inventariss})
 
 def jenis(request):
