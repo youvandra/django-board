@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container-fluid p-0">
+
+    <section class="resume-section p-3 p-lg-5 d-flex align-items-center">
+      <div class="w-100">
+
+
+        <div class="container">
+            <h2>Data Petugas</h2>
+             <p>The .table-striped class adds zebra-stripes to a table:</p>
+            <a class="btn btn-primary" href="/admin/boards/petugas/" role="button">Kelola Data</a>
+            <button>Print</button></br></br>
+            <table class="table table-striped" id="printTable">
+            <thead>
+                <tr>
+                     <th>Id buku</th>
+                     <th>Judul</th>
+                     <th>No ISBN</th>
+                     <th>Penulis</th>
+                     <th>Penerbit</th>
+                     <th>Tahun</th>
+                     <th>Stok</th>
+                     <th>Harga Pokok</th>
+                     <th>Harga Jual</th>
+                     <th>PPN</th>
+                     <th>Diskon</th>
+                </tr>
+             </thead>
+                {% for buku in bukus.all %}
+            <tbody>
+              <tr>
+                  <td>{{ buku.id_buku }}</td>
+                  <td>{{ buku.judul }}</td>
+                  <td>{{ buku.noisbn }}</td>
+                  <td>{{ buku.penulis }}</td>
+                  <td>{{ buku.penerbit }}</td>
+                  <td>{{ buku.tahun }}</td>
+                  <td>{{ buku.stok }}</td>
+                  <td>{{ buku.harga_pokok }}</td>
+                  <td>{{ buku.harga_jual }}</td>
+                  <td>{{ buku.ppn }}</td>
+                  <td>{{ buku.diskon }}</td>
+              </tr>
+            </tbody>
+                {% endfor %}
+
+            </table>
+        </div>
+
+
+      </div>
+    </section>
+
+  </div>
+{% include 'includes/pagination.html' %}
+{% endblock %}

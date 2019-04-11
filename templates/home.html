@@ -1,49 +1,110 @@
 {% extends 'base.html' %}
 
-{% block breadcrumb %}
-  <li class="breadcrumb-item active">Boards</li>
-{% endblock %}
-
 {% block content %}
-  <table class="table">
-    <thead class="thead-inverse">
-      <tr>
-        <th>Board</th>
-        <th>Posts</th>
-        <th>Topics</th>
-        <th>Last Post</th>
-      </tr>
-    </thead>
-    <tbody>
-      {% for board in boards %}
-        <tr>
-          <td>
-            <a href="{% url 'board_topics' board.pk %}">{{ board.name }}</a>
-            <small class="text-muted d-block">{{ board.description }}</small>
-          </td>
-          <td class="align-middle">
-            {{ board.get_posts_count }}
-          </td>
-          <td class="align-middle">
-            {{ board.topics.count }}
-          </td>
-          <td class="align-middle">
-            {% with post=board.get_last_post %}
-  {% if post %}
-    <small>
-      <a href="{% url 'topic_posts' board.pk post.topic.pk %}">
-        By {{ post.created_by.username }} at {{ post.created_at }}
-      </a>
-    </small>
-  {% else %}
-    <small class="text-muted">
-      <em>No posts yet.</em>
-    </small>
-  {% endif %}
-{% endwith %}
-          </td>
-        </tr>
-      {% endfor %}
-    </tbody>
-  </table>
+<div class="container-fluid p-0">
+
+    <section class="resume-section p-3 p-lg-5 d-flex align-items-center">
+      <div class="w-100">
+
+
+        <div class="container">
+            <h1 align="center">Inventaris Sarana dan Prasarana SMK</h1>
+        </div>
+      </div>
+    </section>
+</div>
+<div class="container-fluid p-0">
+   <section class="resume-section p-3 p-lg-5 d-flex align-items-center">
+      <div class="w-100">
+        <div class="container">
+            <div class="row">
+                    <div class="col-lg-4">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="d-flex">
+                                    <div class="m-r-20 align-self-center"><i class="fa fa-car"></i></div>
+                                    <div class="align-self-center">
+                                        <h6 class="text-muted m-t-10 m-b-0">Total Inventaris</h6>
+                                        <h2 class="m-t-0">953,000</h2></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="d-flex">
+                                    <div class="m-r-20 align-self-center"></div>
+                                    <div class="align-self-center">
+                                        <h6 class="text-muted m-t-10 m-b-0">Total Ruang</h6>
+                                        <h2 class="m-t-0">236,000</h2></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="d-flex">
+                                    <div class="m-r-20 align-self-center"></div>
+                                    <div class="align-self-center">
+                                        <h6 class="text-muted m-t-10 m-b-0">Total Petugas</h6>
+                                        <h2 class="m-t-0">987,563</h2></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+          </div>
+      </div>
+   </section>
+</div>
+<div class="container-fluid p-0">
+   <section class="resume-section p-3 p-lg-5 d-flex align-items-center">
+      <div class="w-100">
+        <div class="container">
+            <div class="row">
+                    <div class="col-lg-4">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="d-flex">
+                                    <div class="m-r-20 align-self-center"></div>
+                                    <div class="align-self-center">
+                                        <h6 class="text-muted m-t-10 m-b-0">Total Peminjaman</h6>
+                                        <h2 class="m-t-0">953,000</h2></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="d-flex">
+                                    <div class="m-r-20 align-self-center"></div>
+                                    <div class="align-self-center">
+                                        <h6 class="text-muted m-t-10 m-b-0">Total Detail Peminjaman</h6>
+                                        <h2 class="m-t-0">236,000</h2></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="d-flex">
+                                    <div class="m-r-20 align-self-center"></div>
+                                    <div class="align-self-center">
+                                        <h6 class="text-muted m-t-10 m-b-0">Total Pegawai</h6>
+                                        <h2 class="m-t-0">987,563</h2></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+          </div>
+      </div>
+   </section>
+</div>
+
 {% endblock %}

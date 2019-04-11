@@ -1,7 +1,7 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect, get_object_or_404
 from .forms import NewTopicForm, PostForm
-from .models import Board, Topic, Post
+from .models import Board, Topic, Post, Inventaris,Jenis,Ruang,User,Level,Pegawai,Peminjaman,Detail
 from django.urls import reverse
 from django.db.models import Count
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
@@ -122,5 +122,34 @@ class PostUpdateView(UpdateView):
         post.updated_at = timezone.now()
         post.save()
         return redirect('topic_posts', pk=post.topic.board.pk, topic_pk=post.topic.pk)
+
+def inventaris(request):
+    inventariss = Inventaris.objects.all()
+    return render(request, 'inventaris.html', {'inventariss': inventariss})
+
+def jenis(request):
+    jeniss = Jenis.objects.all()
+    return render(request, 'jenis.html', {'jeniss': jeniss})
+
+def ruang(request):
+    ruangs = Ruang.objects.all()
+    return render(request, 'ruang.html', {'ruangs': ruangs})
+
+def level(request):
+    levels = Level.objects.all()
+    return render(request, 'level.html', {'levels': levels})
+
+def pegawai(request):
+    pegawais = Pegawai.objects.all()
+    return render(request, 'pegawai.html', {'pegawais': pegawais})
+
+def peminjaman(request):
+    peminjamans = Peminjaman.objects.all()
+    return render(request, 'peminjaman.html', {'peminjamans': peminjamans})
+
+def detail(request):
+    details = Detail.objects.all()
+    return render(request, 'detail.html', {'details': details})
+
 
 

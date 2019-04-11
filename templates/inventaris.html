@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="container-fluid p-0">
+
+    <section class="resume-section p-3 p-lg-5 d-flex align-items-center">
+      <div class="w-100">
+
+
+        <div class="container">
+            <h2>Data Inventaris</h2>
+             <p>The .table-striped class adds zebra-stripes to a table:</p>
+            <a class="btn btn-primary" href="/admin/boards/inventaris/" role="button">Kelola Data</a>
+            </br></br>
+            <table class="table table-striped " id="printTable">
+            <thead>
+                <tr>
+                     <th>Id Inventaris</th>
+                     <th>Nama</th>
+                     <th>Kondisi</th>
+                     <th>Keterangan</th>
+                     <th>Jumlah</th>
+                     <th>Id Jenis</th>
+                     <th>Tanggal Register</th>
+                     <th>Id Ruang</th>
+                     <th>Kode Invetaris</th>
+                     <th>Id Petugas</th>
+                </tr>
+             </thead>
+                {% for inventaris in inventariss.all %}
+            <tbody>
+              <tr>
+                  <td>{{ inventaris.id_inventaris }}</td>
+                  <td>{{ inventaris.nama}}</td>
+                  <td>{{ inventaris.kondisi }}</td>
+                  <td>{{ inventaris.keterangan }}</td>
+                  <td>{{ inventaris.jumlah }}</td>
+                  <td>{{ inventaris.id_jenis }}</td>
+                  <td>{{ inventaris.tanggal_register }}</td>
+                  <td>{{ inventaris.id_ruang }}</td>
+                  <td>{{ inventaris.kode_inventaris }}</td>
+                  <td>{{ inventaris.id_petugas }}</td>
+              </tr>
+            </tbody>
+                {% endfor %}
+
+            </table>
+        </div>
+
+      </div>
+    </section>
+
+  </div>
+{% include 'includes/pagination.html' %}
+{% endblock %}
