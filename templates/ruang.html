@@ -1,42 +1,42 @@
 {% extends 'base.html' %}
 {% block content %}
 <div class="container-fluid p-0">
-
     <section class="resume-section p-3 p-lg-5 d-flex align-items-center">
-      <div class="w-100">
-
-
-        <div class="container">
-            <h2>Data Ruang</h2>
-             <p>The .table-striped class adds zebra-stripes to a table:</p>
-            <a class="btn btn-primary" href="/admin/boards/ruang/" role="button">Kelola Data</a></br></br>
-            <table class="table table-striped" id="printTable">
-            <thead>
-                <tr>
-                     <th>Id Ruang</th>
-                     <th>Nama Ruang</th>
-                     <th>Kode Ruang</th>
-                     <th>Keterangan</th>
-                </tr>
-             </thead>
-                {% for ruang in ruangs.all %}
-            <tbody>
-              <tr>
-                  <td>{{ ruang.id_ruang }}</td>
-                  <td>{{ ruang.nama_ruang }}</td>
-                  <td>{{ ruang.kode_ruang }}</td>
-                  <td>{{ ruang.keterangan}}</td>
-              </tr>
-            </tbody>
-                {% endfor %}
-
-            </table>
-        </div>
-
-
-      </div>
+        <div class="w-100">
+            <div class="container">
+                <h2>Data Ruang</h2>
+                {% if user.is_superuser %}
+                <p>Klik "Kelola Data" untuk menghapus, mengedit, dan menambah data</p>
+                <a class="btn btn-primary" href="/admin/boards/peminjaman/" role="button">Kelola Data</a>
+                <button class="btn btn-primary" onclick="printDiv()">Print</button></br></br>
+                {% else %}
+                {% endif %}
+                <div id="printableTable">
+                    <table class="table table-striped" id="printTable">
+                        <thead>
+                        <tr>
+                            <th>Id Ruang</th>
+                            <th>Nama Ruang</th>
+                            <th>Kode Ruang</th>
+                            <th>Keterangan</th>
+                        </tr>
+                        </thead>
+                        {% for ruang in ruangs.all %}
+                        <tbody>
+                        <tr>
+                            <td>{{ ruang.id_ruang }}</td>
+                            <td>{{ ruang.nama_ruang }}</td>
+                            <td>{{ ruang.kode_ruang }}</td>
+                            <td>{{ ruang.keterangan}}</td>
+                        </tr>
+                        </tbody>
+                        {% endfor %}
+                    </table>
+                </div>
+            </div>
     </section>
+    <iframe name="print_frame" width="0" height="0" frameborder="0" src="about:blank"></iframe>
+</div>
 
-  </div>
 {% include 'includes/pagination.html' %}
 {% endblock %}
