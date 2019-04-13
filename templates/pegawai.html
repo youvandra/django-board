@@ -7,7 +7,7 @@
                 <h2>Data Pegawai</h2>
                 {% if user.is_superuser %}
                 <p>Klik "Kelola Data" untuk menghapus, mengedit, dan menambah data</p>
-                <a class="btn btn-primary" href="/admin/boards/peminjaman/" role="button">Kelola Data</a>
+                <a class="btn btn-primary" target=_blank href="/admin/boards/pegawai/" role="button">Kelola Data</a>
                 <button class="btn btn-primary" onclick="printDiv()">Print</button></br></br>
                 {% else %}
                 {% endif %}
@@ -21,7 +21,7 @@
                             <th>Alamat</th>
                         </tr>
                         </thead>
-                        {% for pegawai in pegawais.all %}
+                        {% for pegawai in pegawai %}
                         <tbody>
                         <tr>
                             <td>{{ pegawai.id_pegawai }}</td>
@@ -37,6 +37,5 @@
     </section>
     <iframe name="print_frame" width="0" height="0" frameborder="0" src="about:blank"></iframe>
 </div>
-
 {% include 'includes/pagination.html' %}
 {% endblock %}

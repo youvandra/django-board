@@ -1,56 +1,131 @@
-{% if is_paginated %}
-<nav aria-label="Topics pagination" class="mb-4">
+{% if inventaris.has_other_pages %}
   <ul class="pagination">
-    {% if page_obj.number > 1 %}
-    <li class="page-item">
-      <a class="page-link" href="?page=1">First</a>
-    </li>
+    {% if inventaris.has_previous %}
+      <li class="page-item"><a class="page-link" href="?page={{ inventaris.previous_page_number }}">Previous</a></li>
     {% else %}
-    <li class="page-item disabled">
-      <span class="page-link">First</span>
-    </li>
+    <li class="page-item disable"><a class="page-link" href="#">Previous</a></li>
     {% endif %}
-    {% if page_obj.has_previous %}
-    <li class="page-item">
-      <a class="page-link" href="?page={{ page_obj.previous_page_number }}">Previous</a>
-    </li>
-    {% else %}
-    <li class="page-item disabled">
-      <span class="page-link">Previous</span>
-    </li>
-    {% endif %}
-      {% for page_num in paginator.page_range %}
-    {% if page_obj.number == page_num %}
-    <li class="page-item active">
-      <span class="page-link">
-        {{ page_num }}
-        <span class="sr-only">(current)</span>
-      </span>
-    </li>
-    {% elif page_num > page_obj.number|add:'-3' and page_num < page_obj.number|add:'3' %}
-    <li class="page-item">
-      <a class="page-link" href="?page={{ page_num }}">{{ page_num }}</a>
-    </li>
-    {% endif %}
+    {% for i in inventaris.paginator.page_range %}
+      {% if inventaris.number == i %}
+        <li class="page-item active"><a class="page-link " href="#">{{ i }}</a></li>
+      {% else %}
+        <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+      {% endif %}
     {% endfor %}
-    {% if page_obj.has_next %}
-    <li class="page-item">
-      <a class="page-link" href="?page={{ page_obj.next_page_number }}">Next</a>
-    </li>
+    {% if inventaris.has_next %}
+      <li class="page-item"><a class="page-link" href="?page={{ inventaris.next_page_number }}">Next</a></li>
     {% else %}
-    <li class="page-item disabled">
-      <span class="page-link">Next</span>
-    </li>
-    {% endif %}
-    {% if page_obj.number != paginator.num_pages %}
-    <li class="page-item">
-      <a class="page-link" href="?page={{ paginator.num_pages }}">Last</a>
-    </li>
-    {% else %}
-    <li class="page-item disabled">
-      <span class="page-link">Last</span>
-    </li>
+      <li class="page-item disable"><a class="page-link" href="#">Next</a></li>
     {% endif %}
   </ul>
-</nav>
+{% endif %}
+
+{% if jenis.has_other_pages %}
+  <ul class="pagination">
+    {% if jenis.has_previous %}
+      <li class="page-item"><a class="page-link" href="?page={{ jenis.previous_page_number }}">Previous</a></li>
+    {% else %}
+    <li class="page-item disable"><a class="page-link" href="#">Previous</a></li>
+    {% endif %}
+    {% for i in jenis.paginator.page_range %}
+      {% if jenis.number == i %}
+        <li class="page-item active"><a class="page-link " href="#">{{ i }}</a></li>
+      {% else %}
+        <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+      {% endif %}
+    {% endfor %}
+    {% if jenis.has_next %}
+      <li class="page-item"><a class="page-link" href="?page={{ jenis.next_page_number }}">Next</a></li>
+    {% else %}
+      <li class="page-item disable"><a class="page-link" href="#">Next</a></li>
+    {% endif %}
+  </ul>
+{% endif %}
+
+{% if ruang.has_other_pages %}
+  <ul class="pagination">
+    {% if ruang.has_previous %}
+      <li class="page-item"><a class="page-link" href="?page={{ ruang.previous_page_number }}">Previous</a></li>
+    {% else %}
+    <li class="page-item disable"><a class="page-link" href="#">Previous</a></li>
+    {% endif %}
+    {% for i in ruang.paginator.page_range %}
+      {% if ruang.number == i %}
+        <li class="page-item active"><a class="page-link " href="#">{{ i }}</a></li>
+      {% else %}
+        <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+      {% endif %}
+    {% endfor %}
+    {% if ruang.has_next %}
+      <li class="page-item"><a class="page-link" href="?page={{ ruang.next_page_number }}">Next</a></li>
+    {% else %}
+      <li class="page-item disable"><a class="page-link" href="#">Next</a></li>
+    {% endif %}
+  </ul>
+{% endif %}
+
+{% if pegawai.has_other_pages %}
+  <ul class="pagination">
+    {% if pegawai.has_previous %}
+      <li class="page-item"><a class="page-link" href="?page={{ pegawai.previous_page_number }}">Previous</a></li>
+    {% else %}
+    <li class="page-item disable"><a class="page-link" href="#">Previous</a></li>
+    {% endif %}
+    {% for i in pegawai.paginator.page_range %}
+      {% if pegawai.number == i %}
+        <li class="page-item active"><a class="page-link " href="#">{{ i }}</a></li>
+      {% else %}
+        <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+      {% endif %}
+    {% endfor %}
+    {% if pegawai.has_next %}
+      <li class="page-item"><a class="page-link" href="?page={{ pegawai.next_page_number }}">Next</a></li>
+    {% else %}
+      <li class="page-item disable"><a class="page-link" href="#">Next</a></li>
+    {% endif %}
+  </ul>
+{% endif %}
+
+{% if peminjaman.has_other_pages %}
+  <ul class="pagination">
+    {% if peminjaman.has_previous %}
+      <li class="page-item"><a class="page-link" href="?page={{ peminjaman.previous_page_number }}">Previous</a></li>
+    {% else %}
+    <li class="page-item disable"><a class="page-link" href="#">Previous</a></li>
+    {% endif %}
+    {% for i in peminjaman.paginator.page_range %}
+      {% if peminjaman.number == i %}
+        <li class="page-item active"><a class="page-link " href="#">{{ i }}</a></li>
+      {% else %}
+        <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+      {% endif %}
+    {% endfor %}
+    {% if peminjaman.has_next %}
+      <li class="page-item"><a class="page-link" href="?page={{ peminjaman.next_page_number }}">Next</a></li>
+    {% else %}
+      <li class="page-item disable"><a class="page-link" href="#">Next</a></li>
+    {% endif %}
+  </ul>
+{% endif %}
+
+{% if detail.has_other_pages %}
+  <ul class="pagination">
+    {% if detail.has_previous %}
+      <li class="page-item"><a class="page-link" href="?page={{ detail.previous_page_number }}">Previous</a></li>
+    {% else %}
+    <li class="page-item disable"><a class="page-link" href="#">Previous</a></li>
+    {% endif %}
+    {% for i in detail.paginator.page_range %}
+      {% if detail.number == i %}
+        <li class="page-item active"><a class="page-link " href="#">{{ i }}</a></li>
+      {% else %}
+        <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+      {% endif %}
+    {% endfor %}
+    {% if detail.has_next %}
+      <li class="page-item"><a class="page-link" href="?page={{ detail.next_page_number }}">Next</a></li>
+    {% else %}
+      <li class="page-item disable"><a class="page-link" href="#">Next</a></li>
+    {% endif %}
+  </ul>
 {% endif %}

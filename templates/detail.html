@@ -7,7 +7,7 @@
                 <h2>Data Detail Pinjaman</h2>
                 {% if user.is_superuser %}
                 <p>Klik "Kelola Data" untuk menghapus, mengedit, dan menambah data</p>
-                <a class="btn btn-primary" href="/admin/boards/peminjaman/" role="button">Kelola Data</a>
+                <a class="btn btn-primary" target=_blank href="/admin/boards/detail/" role="button">Kelola Data</a>
                 <button class="btn btn-primary" onclick="printDiv()">Print</button></br></br>
                 {% else %}
                 {% endif %}
@@ -20,7 +20,7 @@
                             <th>Jumlah</th>
                         </tr>
                         </thead>
-                        {% for detail in details.all %}
+                        {% for detail in detail %}
                         <tbody>
                         <tr>
                             <td>{{ detail.id_detail_pinjam }}</td>

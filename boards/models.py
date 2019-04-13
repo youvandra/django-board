@@ -21,6 +21,7 @@ class Level(models.Model):
         return self.id_level
 
 class Jenis(models.Model):
+    order_jenis = models.IntegerField(default=0, null=True)
     id_jenis = models.CharField(max_length=100, unique=True)
     nama_jenis = models.CharField(max_length=100)
     kode_jenis = models.CharField(max_length=100)
@@ -30,6 +31,7 @@ class Jenis(models.Model):
         return self.id_jenis
 
 class Ruang(models.Model):
+    order_ruang = models.IntegerField(default=0, null=True)
     id_ruang = models.CharField(max_length=100, unique=True)
     nama_ruang = models.CharField(max_length=100)
     kode_ruang = models.CharField(max_length=100)
@@ -40,6 +42,7 @@ class Ruang(models.Model):
 
 
 class Inventaris(models.Model):
+    order_inventaris = models.IntegerField(default=0, null=True)
     id_inventaris = models.CharField(max_length=30, unique=True)
     nama_inventaris = models.CharField(max_length=100)
     kondisi = models.CharField(max_length=100)
@@ -54,6 +57,7 @@ class Inventaris(models.Model):
         return self.id_inventaris
 
 class Detail(models.Model):
+    order_detail = models.IntegerField(default=0, null=True)
     id_detail_pinjam = models.CharField(max_length=100, unique=True)
     id_inventaris = models.ForeignKey('Inventaris', on_delete=models.DO_NOTHING, null=True)
     jumlah = models.IntegerField()
@@ -62,9 +66,10 @@ class Detail(models.Model):
         return self.id_detail_pinjam
 
 class Peminjaman(models.Model):
+    order_peminjaman = models.IntegerField(default=0, null=True)
     id_peminjaman = models.CharField(max_length=100, unique=True)
     tanggal_register = models.DateTimeField(auto_now_add=True)
-    tanggal_kembali = models.DateTimeField(auto_now_add=False)
+    tanggal_kembali = models.DateTimeField()
     status_peminjaman = models.CharField(max_length=100)
     id_pegawai = models.ForeignKey('Inventaris', on_delete=models.DO_NOTHING, null=True)
 
@@ -72,6 +77,7 @@ class Peminjaman(models.Model):
         return self.id_peminjaman
 
 class Pegawai(models.Model):
+    order_pegawai = models.IntegerField(default=0, null=True)
     id_pegawai = models.CharField(max_length=100, unique=True)
     nama_pegawai = models.CharField(max_length=100)
     nip = models.IntegerField()
@@ -79,46 +85,3 @@ class Pegawai(models.Model):
 
     def __str__(self):
         return self.id_pegawai
-
-
-class Topic(models.Model):
-    subject = models.CharField(max_length=255)
-    last_updated = models.DateTimeField(auto_now_add=True)
-    board = models.ForeignKey(Board, related_name='topics', on_delete=models.DO_NOTHING,)
-    starter = models.ForeignKey(User, related_name='topics',on_delete=models.DO_NOTHING,)
-    views = models.PositiveIntegerField(default=0)
-    def __str__(self):
-        return self.subject
-    def get_page_count(self):
-        count = self.posts.count()
-        pages = count / 20
-        return math.ceil(pages)
-
-    def has_many_pages(self, count=None):
-        if count is None:
-            count = self.get_page_count()
-        return count > 6
-
-    def get_page_range(self):
-        count = self.get_page_count()
-        if self.has_many_pages(count):
-            return range(1, 5)
-        return range(1, count + 1)
-    def get_last_ten_posts(self):
-        return self.posts.order_by('-created_at')[:10]
-
-
-class Post(models.Model):
-    message = models.TextField(max_length=4000)
-    topic = models.ForeignKey(Topic, related_name='posts',on_delete=models.DO_NOTHING,)
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(null=True)
-    created_by = models.ForeignKey(User, related_name='posts', on_delete=models.DO_NOTHING,)
-    updated_by = models.ForeignKey(User, null=True, related_name='+',on_delete=models.DO_NOTHING,)
-    def __str__(self):
-        truncated_message = Truncator(self.message)
-        return truncated_message.chars(30)
-    def get_message_as_markdown(self):
-        return mark_safe(markdown(self.message, safe_mode='escape'))
-
-  

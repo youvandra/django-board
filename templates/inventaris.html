@@ -30,19 +30,19 @@
                      <th>Id Petugas</th>
                 </tr>
              </thead>
-                {% for inventaris in inventariss.all %}
+                {% for inventariss in inventaris %}
             <tbody>
               <tr>
-                  <td>{{ inventaris.id_inventaris }}</td>
-                  <td>{{ inventaris.nama}}</td>
-                  <td>{{ inventaris.kondisi }}</td>
-                  <td>{{ inventaris.keterangan }}</td>
-                  <td>{{ inventaris.jumlah }}</td>
-                  <td>{{ inventaris.id_jenis }}</td>
-                  <td>{{ inventaris.tanggal_register }}</td>
-                  <td>{{ inventaris.id_ruang }}</td>
-                  <td>{{ inventaris.kode_inventaris }}</td>
-                  <td>{{ inventaris.id_petugas }}</td>
+                  <td>{{ inventariss.id_inventaris }}</td>
+                  <td>{{ inventariss.nama}}</td>
+                  <td>{{ inventariss.kondisi }}</td>
+                  <td>{{ inventariss.keterangan }}</td>
+                  <td>{{ inventariss.jumlah }}</td>
+                  <td>{{ inventariss.id_jenis }}</td>
+                  <td>{{ inventariss.tanggal_register }}</td>
+                  <td>{{ inventariss.id_ruang }}</td>
+                  <td>{{ inventariss.kode_inventaris }}</td>
+                  <td>{{ inventariss.id_petugas }}</td>
               </tr>
             </tbody>
                 {% endfor %}
@@ -54,5 +54,5 @@
     </section>
 <iframe name="print_frame" width="0" height="0" frameborder="0" src="about:blank"></iframe>
 </div>
-{% include 'includes/pagination.html' %}
+{% include 'includes/pagination.html'%}
 {% endblock %}
