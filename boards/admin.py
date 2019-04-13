@@ -9,3 +9,5 @@ admin.site.register(Level)
 admin.site.register(Pegawai)
 admin.site.register(Peminjaman)
 admin.site.register(Detail)
+admin.site.site_title = "Data Inventaris Sarpras SMK"
+admin.site.site_header = "Login ke Data Inventaris"
